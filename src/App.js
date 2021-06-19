@@ -1,7 +1,61 @@
-import logo from './logo.svg';
+import React from "react"
 import './App.css';
+import { Button } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+class App extends React.Component {
 
-function App() {
+ 
+  handleClick=()=>this.setState({show: true })
+  
+    state = {
+      Person :{ fullName:"Ben Mamya Rihab",bio:"Ing", imgSrc:"/photoProfile.png", profession:"Web Development"} ,
+      show: false 
+    };
+  
+
+  componentDidMount() {
+    this.timer = setInterval(
+      () => this.setState({
+        date: new Date()
+      }),
+      1000
+    );
+  }
+
+
+
+  render() {
+    return(
+      <div className="App">
+      <header className="App-header">
+     
+      { this.state.show ? 
+      <>
+      <div className="App-top"> <h2>{this.state.date.toLocaleTimeString()}</h2></div>
+      
+      <div style={{fontFamily: "Times New Roman",}}>
+      <img src={this.state.Person.imgSrc} alt="photoProfile" width="150" />
+      <h1>{this.state.Person.fullName}</h1> 
+         
+         {this.state.Person.bio}
+<br/>
+{this.state.Person.profession}
+<br/>
+</div>
+<br/>
+         </>
+      :<Button pill variant="light" onClick={this.handleClick}> Show</Button> }
+    
+      
+      
+      
+      </header>
+    </div>
+    )
+  }
+ }
+ 
+/*function App() {
   return (
     <div className="App">
       <header className="App-header">
@@ -20,6 +74,6 @@ function App() {
       </header>
     </div>
   );
-}
+}*/
 
 export default App;
